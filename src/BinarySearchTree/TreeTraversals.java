@@ -1,0 +1,58 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package BinarySearchTree;
+
+import BinarySearchTree.BST;
+import Node.Node;
+import java.util.LinkedList;
+import java.util.Queue;
+ import java.util.Stack;
+/**
+ *
+ * @author MarekPC
+ */
+public class TreeTraversals {
+    
+    public static void printInOrder(BST tree){
+        if(tree.root == null){
+            System.out.println("******** Tree is empty **********");
+            return;
+        }
+         System.out.println("******** IN ORDER **********\n");
+        Stack<Node<?>> stack = new Stack<>();
+        Node<?> current = tree.root;
+        while(current != null || stack.size() > 0){
+            
+            
+            while(current != null){
+                stack.push(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            System.out.print(current.key + "   ");
+            current = current.right;
+        }
+        
+        System.out.println("\n");
+    }
+    public static void printLevelOrder(BST tree){
+         if(tree.root == null){
+            System.out.println("******** Tree is empty **********");
+            return;
+        }
+          System.out.println("******** LEVEL ORDER **********\n");
+        Queue<Node<?>> q =  new LinkedList<>();
+        q.add(tree.root);
+        while(!q.isEmpty()){
+            Node<?> current = q.remove();
+            System.out.print(current.key+"   ");
+            if(current.left != null) q.add(current.left);
+            if(current.right != null) q.add(current.right);
+        }
+        System.out.println("\n");
+    }
+    
+}
